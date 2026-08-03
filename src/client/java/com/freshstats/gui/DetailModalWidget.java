@@ -4,8 +4,6 @@ import com.freshstats.data.CategoryData;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.widget.EntryListWidget;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 
@@ -19,7 +17,7 @@ public class DetailModalWidget {
     private final int width;
     private final int height;
     private boolean visible = true;
-    private final DetailListWidget listWidget;
+    private float scrollAmount = 0.0f;
 
     public DetailModalWidget(Screen parent, CategoryData categoryData, int x, int y, int width, int height) {
         this.parent = parent;
@@ -28,10 +26,6 @@ public class DetailModalWidget {
         this.y = y;
         this.width = width;
         this.height = height;
-
-        MinecraftClient client = MinecraftClient.getInstance();
-        this.listWidget = new DetailListWidget(client, width - 20, height - 60, y + 34, 20);
-        this.listWidget.setX(x + 10);
     }
 
     public boolean isVisible() {
@@ -64,87 +58,94 @@ public class DetailModalWidget {
         // Close instruction / hint
         context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, Text.translatable("freshstats.modal.close_hint"), x + width / 2, y + height - 16, 0xFF8E9BAE);
 
-        // 3. Draw solid background box for list area to guarantee zero bleed-through
+        // 3. Draw solid background box for list area
         int listX = x + 10;
         int listY = y + 34;
         int listW = width - 20;
-        int listH = height - 60;
+        int listH = height - 56;
+
         context.fill(listX - 1, listY - 1, listX + listW + 1, listY + listH + 1, 0xFF2A3242);
         context.fill(listX, listY, listX + listW, listY + listH, 0xFF0F121A);
 
-        // 4. Render detailed entries list
-        this.listWidget.render(context, mouseX, mouseY, delta);
+        // 4. Render detailed entries list using scissor clipping (1.20.1 & 1.21.1 cross-compatible)
+        List<CategoryData.DetailEntry> entries = categoryData.getDetails();
+        int itemH = 20;
+        int totalContentH = Math.max(listH, (entries.isEmpty() ? 1 : entries.size()) * itemH);
+        int maxScroll = Math.max(0, totalContentH - listH);
+
+        if (scrollAmount > maxScroll) scrollAmount = maxScroll;
+        if (scrollAmount < 0) scrollAmount = 0;
+
+        context.enableScissor(listX, listY, listX + listW, listY + listH);
+
+        if (entries.isEmpty()) {
+            context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, Text.translatable("freshstats.modal.no_data"), listX + 10, listY + 10, 0xFF8E9BAE);
+        } else {
+            for (int i = 0; i < entries.size(); i++) {
+                int itemY = listY + (i * itemH) - (int) scrollAmount;
+                if (itemY + itemH < listY || itemY > listY + listH) continue;
+
+                CategoryData.DetailEntry entry = entries.get(i);
+                boolean hovered = mouseX >= listX && mouseX <= listX + listW && mouseY >= itemY && mouseY < itemY + itemH;
+
+                if (hovered) {
+                    context.fill(listX, itemY, listX + listW, itemY + itemH, 0x22FFFFFF);
+                }
+
+                int textX = listX + 6;
+                ItemStack icon = entry.getIcon();
+                if (icon != null && !icon.isEmpty()) {
+                    context.drawItem(icon, listX + 4, itemY + 2);
+                    textX = listX + 26;
+                }
+
+                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, entry.getName(), textX, itemY + 6, 0xFFEEEEEE);
+
+                String countText = String.format("%,d", entry.getCount());
+                int countWidth = MinecraftClient.getInstance().textRenderer.getWidth(countText);
+                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, countText, listX + listW - countWidth - 8, itemY + 6, categoryData.getCategory().getColor());
+            }
+        }
+
+        context.disableScissor();
+
+        // 5. Draw Scrollbar if list overflows container
+        if (maxScroll > 0) {
+            int barW = 4;
+            int barX = listX + listW - barW - 2;
+            float ratio = (float) listH / totalContentH;
+            int barH = Math.max(16, (int) (listH * ratio));
+            int barY = listY + (int) ((listH - barH) * (scrollAmount / maxScroll));
+
+            context.fill(barX, listY, barX + barW, listY + listH, 0x44000000);
+            context.fill(barX, barY, barX + barW, barY + barH, 0xFF556677);
+        }
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (!visible) return false;
-        if (this.listWidget.mouseClicked(mouseX, mouseY, button)) {
+
+        // Click outside modal container closes modal
+        if (mouseX < x || mouseX > x + width || mouseY < y || mouseY > y + height) {
+            visible = false;
             return true;
         }
-        // Click outside list closes modal
-        visible = false;
         return true;
     }
 
     public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
         if (!visible) return false;
-        return this.listWidget.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
-    }
 
-    private class DetailListWidget extends EntryListWidget<DetailListWidget.DetailEntryItem> {
-        public DetailListWidget(MinecraftClient client, int width, int height, int top, int itemHeight) {
-            super(client, width, height, top, itemHeight);
-            populate();
+        List<CategoryData.DetailEntry> entries = categoryData.getDetails();
+        int listH = height - 56;
+        int itemH = 20;
+        int totalContentH = Math.max(listH, (entries.isEmpty() ? 1 : entries.size()) * itemH);
+        int maxScroll = Math.max(0, totalContentH - listH);
+
+        if (maxScroll > 0) {
+            scrollAmount = (float) Math.max(0, Math.min(maxScroll, scrollAmount - verticalAmount * 14));
+            return true;
         }
-
-        private void populate() {
-            List<CategoryData.DetailEntry> entries = categoryData.getDetails();
-            if (entries.isEmpty()) {
-                addEntry(new DetailEntryItem(Text.translatable("freshstats.modal.no_data"), 0, null));
-            } else {
-                for (CategoryData.DetailEntry entry : entries) {
-                    addEntry(new DetailEntryItem(entry.getName(), entry.getCount(), entry.getIcon()));
-                }
-            }
-        }
-
-        @Override
-        public int getRowWidth() {
-            return this.width - 10;
-        }
-
-        @Override
-        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
-        }
-
-        private class DetailEntryItem extends EntryListWidget.Entry<DetailEntryItem> {
-            private final Text name;
-            private final long count;
-            private final ItemStack icon;
-
-            public DetailEntryItem(Text name, long count, ItemStack icon) {
-                this.name = name;
-                this.count = count;
-                this.icon = icon;
-            }
-
-            @Override
-            public void render(DrawContext context, int index, int top, int left, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-                if (hovered) {
-                    context.fill(left, top, left + entryWidth, top + entryHeight, 0x22FFFFFF);
-                }
-
-                int textX = left + 5;
-                if (icon != null && !icon.isEmpty()) {
-                    context.drawItem(icon, left + 2, top + 2);
-                    textX = left + 24;
-                }
-
-                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, name, textX, top + 5, 0xFFEEEEEE);
-                String countText = String.format("%,d", count);
-                int countWidth = MinecraftClient.getInstance().textRenderer.getWidth(countText);
-                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, countText, left + entryWidth - countWidth - 8, top + 5, categoryData.getCategory().getColor());
-            }
-        }
+        return false;
     }
 }
