@@ -1,0 +1,67 @@
+{
+  "category.freshstats": "FreshStats",
+  "key.freshstats.open": "Открыть графическую статистику",
+
+  "freshstats.title": "FreshStats - Статистика",
+  "freshstats.tab.current": "Текущий мир",
+  "freshstats.tab.current_selected": "▶ Текущий мир",
+  "freshstats.tab.global": "Все миры и сервера",
+  "freshstats.tab.global_selected": "▶ Все миры и сервера",
+  "freshstats.sub.current": "Текущий мир / Сервер (%s)",
+  "freshstats.sub.global": "Агрегированная статистика с %d сохраненных миров / серверов (%s)",
+  "freshstats.btn.vanilla": "Обычная статистика",
+  "freshstats.btn.close": "Закрыть",
+  "freshstats.modal.close_hint": "Кликните в любом месте для закрытия",
+  "freshstats.modal.details": "Детализация: %s (%s %s)",
+  "freshstats.modal.no_data": "Нет записанных данных",
+  "freshstats.tooltip.total": "Всего: %s %s",
+  "freshstats.tooltip.top": "Топ показатель:",
+  "freshstats.tooltip.click_hint": "▶ Нажмите на точку для подробностей",
+
+  "freshstats.category.travel": "Путешествия",
+  "freshstats.category.travel.desc": "Дистанция передвижения",
+  "freshstats.category.travel.unit": "м",
+
+  "freshstats.category.combat": "Боевка",
+  "freshstats.category.combat.desc": "Урон, убийства и смертность",
+  "freshstats.category.combat.unit": "очков",
+
+  "freshstats.category.trading": "Торговля",
+  "freshstats.category.trading.desc": "Сделки с жителями",
+  "freshstats.category.trading.unit": "сделок",
+
+  "freshstats.category.agriculture": "Сельское хозяйство",
+  "freshstats.category.agriculture.desc": "Урожай, рыбалка и фермерство",
+  "freshstats.category.agriculture.unit": "действие",
+
+  "freshstats.category.building": "Строительство",
+  "freshstats.category.building.desc": "Установленные блоки",
+  "freshstats.category.building.unit": "блоков",
+
+  "freshstats.category.mining": "Шахтерство",
+  "freshstats.category.mining.desc": "Добытые блоки и руды",
+  "freshstats.category.mining.unit": "блоков",
+
+  "freshstats.detail.walk": "Пешком",
+  "freshstats.detail.sprint": "Бег",
+  "freshstats.detail.crouch": "Крадучись",
+  "freshstats.detail.swim": "Плавание",
+  "freshstats.detail.underwater": "Под водой",
+  "freshstats.detail.elytra": "Полет (Элитры)",
+  "freshstats.detail.creative_fly": "Творческий полет",
+  "freshstats.detail.boat": "Лодка",
+  "freshstats.detail.minecart": "Вагонетка",
+  "freshstats.detail.horse": "Лошадь / Осел",
+  "freshstats.detail.pig_ride": "Свинья",
+  "freshstats.detail.strider": "Страйдер",
+  "freshstats.detail.climb": "Карабканье",
+
+  "freshstats.detail.damage_dealt": "Нанесено урона",
+  "freshstats.detail.mob_kills": "Убито мобов",
+  "freshstats.detail.damage_taken": "Получено урона",
+  "freshstats.detail.player_kills": "Убито игроков",
+  "freshstats.detail.deaths": "Смертей",
+  "freshstats.detail.trades": "Сделок с жителями",
+  "freshstats.detail.animals_bred": "Выращено животных",
+  "freshstats.detail.fish_caught": "Поймано рыбы"
+}

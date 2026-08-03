@@ -1,0 +1,67 @@
+{
+  "category.freshstats": "FreshStats",
+  "key.freshstats.open": "Open Visual Statistics",
+
+  "freshstats.title": "FreshStats - Statistics",
+  "freshstats.tab.current": "Current World",
+  "freshstats.tab.current_selected": "▶ Current World",
+  "freshstats.tab.global": "All Worlds & Servers",
+  "freshstats.tab.global_selected": "▶ All Worlds & Servers",
+  "freshstats.sub.current": "Current World / Server (%s)",
+  "freshstats.sub.global": "Aggregated Statistics Across %d Saved Worlds / Servers (%s)",
+  "freshstats.btn.vanilla": "Vanilla Statistics",
+  "freshstats.btn.close": "Close",
+  "freshstats.modal.close_hint": "Click anywhere to close",
+  "freshstats.modal.details": "Details: %s (%s %s)",
+  "freshstats.modal.no_data": "No recorded data",
+  "freshstats.tooltip.total": "Total: %s %s",
+  "freshstats.tooltip.top": "Top metric:",
+  "freshstats.tooltip.click_hint": "▶ Click point for details",
+
+  "freshstats.category.travel": "Travel",
+  "freshstats.category.travel.desc": "Travel distance",
+  "freshstats.category.travel.unit": "m",
+
+  "freshstats.category.combat": "Combat",
+  "freshstats.category.combat.desc": "Damage, kills and deaths",
+  "freshstats.category.combat.unit": "pts",
+
+  "freshstats.category.trading": "Trading",
+  "freshstats.category.trading.desc": "Villager trades",
+  "freshstats.category.trading.unit": "trades",
+
+  "freshstats.category.agriculture": "Agriculture",
+  "freshstats.category.agriculture.desc": "Crops, fishing and breeding",
+  "freshstats.category.agriculture.unit": "actions",
+
+  "freshstats.category.building": "Building",
+  "freshstats.category.building.desc": "Placed blocks",
+  "freshstats.category.building.unit": "blocks",
+
+  "freshstats.category.mining": "Mining",
+  "freshstats.category.mining.desc": "Mined blocks and ores",
+  "freshstats.category.mining.unit": "blocks",
+
+  "freshstats.detail.walk": "Walking",
+  "freshstats.detail.sprint": "Sprinting",
+  "freshstats.detail.crouch": "Sneaking",
+  "freshstats.detail.swim": "Swimming",
+  "freshstats.detail.underwater": "Underwater",
+  "freshstats.detail.elytra": "Elytra Flying",
+  "freshstats.detail.creative_fly": "Creative Flying",
+  "freshstats.detail.boat": "Boat",
+  "freshstats.detail.minecart": "Minecart",
+  "freshstats.detail.horse": "Horse / Donkey",
+  "freshstats.detail.pig_ride": "Pig Riding",
+  "freshstats.detail.strider": "Strider",
+  "freshstats.detail.climb": "Climbing",
+
+  "freshstats.detail.damage_dealt": "Damage Dealt",
+  "freshstats.detail.mob_kills": "Mob Kills",
+  "freshstats.detail.damage_taken": "Damage Taken",
+  "freshstats.detail.player_kills": "Player Kills",
+  "freshstats.detail.deaths": "Deaths",
+  "freshstats.detail.trades": "Villager Trades",
+  "freshstats.detail.animals_bred": "Animals Bred",
+  "freshstats.detail.fish_caught": "Fish Caught"
+}

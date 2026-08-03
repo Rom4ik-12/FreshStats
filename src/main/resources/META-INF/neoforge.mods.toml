@@ -1,0 +1,16 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="freshstats"
+version="${file.jarVersion}"
+displayName="FreshStats"
+authors="FreshStats"
+description="Beautiful radar chart statistics for Minecraft"
+
+[[mixins]]
+config="freshstats.mixins.json"
+
+[[mixins]]
+config="freshstats.client.mixins.json"

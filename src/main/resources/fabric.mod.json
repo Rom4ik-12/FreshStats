@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "freshstats",
+  "version": "${version}",
+  "name": "FreshStats",
+  "description": "Beautiful radar chart statistics for Minecraft",
+  "authors": [
+    "FreshStats"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/freshstats/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.freshstats.FreshStatsMod"
+    ],
+    "client": [
+      "com.freshstats.FreshStatsClient"
+    ]
+  },
+  "mixins": [
+    "freshstats.mixins.json",
+    {
+      "config": "freshstats.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": ">=1.20.1",
+    "java": ">=17"
+  }
+}
