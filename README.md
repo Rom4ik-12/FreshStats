@@ -1,10 +1,21 @@
-# 📊 FreshStats
+<div align="center">
+
+<img src="assets/screenshots/icon.png" width="128" height="128" alt="FreshStats Logo">
+
+# FreshStats
+
+**Красивая интерактивная диаграмма-радар игровой статистики для Minecraft**  
+*Beautiful & modern 6-axis radar statistics chart mod for Minecraft*
 
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.20.1%20--%201.21.1%2B-brightgreen.svg)](https://minecraft.net)
 [![Mod Loader](https://img.shields.io/badge/Loader-Fabric%20%7C%20NeoForge-blue.svg)](https://fabricmc.net)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+---
+
 *Read this in other languages: [English](#-english) | [Русский](#-русский)*
+
+</div>
 
 ---
 
