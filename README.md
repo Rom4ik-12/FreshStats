@@ -23,6 +23,8 @@
 
 **FreshStats** — это красивый и современный клиентский мод для Minecraft, добавляющий элегантную интерактивную диаграмму-радар для визуализации вашей игровой статистики.
 
+Забудьте о громоздких текстовых списках ванильного меню статистики! FreshStats автоматически находит все ваши сохранения и сервера, анализирует каждый ваш шаг, нанесенный урон, установленные блоки и сделки с жителями, преобразуя их в наглядную графическую диаграмму-радар.
+
 ![Radar Chart](assets/screenshots/radar_chart.png)
 
 ### ✨ Основные возможности
@@ -56,6 +58,8 @@
 ## 🇬🇧 English
 
 **FreshStats** is a clean, modern client-side Minecraft mod that introduces a sleek interactive radar chart GUI to visualize all your gameplay statistics.
+
+Say goodbye to tedious wall-of-text vanilla stat lists! FreshStats automatically scans all your saved singleplayer worlds and servers, compiling every step walked, damage dealt, block placed, and item traded into an intuitive visual hexagon chart.
 
 ![Radar Chart](assets/screenshots/radar_chart.png)
 
