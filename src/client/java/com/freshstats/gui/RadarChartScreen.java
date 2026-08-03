@@ -180,7 +180,7 @@ public class RadarChartScreen extends Screen {
         // 3. Draw thin elegant radar grid & axis rays
         drawRadarGrid(context, centerX, centerY, radius);
 
-        // 4. Draw Radar Filled Polygon & Outline (Dotless clean geometry)
+        // 4. Draw Radar Filled Polygon & Outline
         drawRadarPolygon(context, centerX, centerY, pointX, pointY);
 
         boolean isModalOpen = (activeModal != null && activeModal.isVisible());
@@ -190,10 +190,10 @@ public class RadarChartScreen extends Screen {
             drawCategoryLabels(context, centerX, centerY, radius, statsData, mouseX, mouseY, eased);
         }
 
-        // 6. Check Hover (No idle dots, subtle highlight on hover only)
+        // 6. Draw Interactive Vertex Points & Check Hover ONLY IF MODAL IS NOT OPEN
         int hoveredCategoryIndex = -1;
         if (!isModalOpen) {
-            hoveredCategoryIndex = checkVertexHover(context, mouseX, mouseY);
+            hoveredCategoryIndex = drawVertexPointsAndCheckHover(context, mouseX, mouseY);
         }
 
         // 7. Draw Tooltip for Hovered Category Point
@@ -298,7 +298,7 @@ public class RadarChartScreen extends Screen {
             fillTriangle(context, centerX, centerY, px[i], py[i], px[next], py[next], fillColor);
         }
 
-        // 2. Render Polygon Outline (Thin modern teal stroke without dots)
+        // 2. Render Polygon Outline (Thin modern teal stroke)
         for (int i = 0; i < 6; i++) {
             int next = (i + 1) % 6;
             drawLine(context, px[i], py[i], px[next], py[next], 1.8f, 0xFF00B4D8);
@@ -337,7 +337,7 @@ public class RadarChartScreen extends Screen {
         }
     }
 
-    private int checkVertexHover(DrawContext context, int mouseX, int mouseY) {
+    private int drawVertexPointsAndCheckHover(DrawContext context, int mouseX, int mouseY) {
         int hoveredIndex = -1;
 
         for (int i = 0; i < 6; i++) {
@@ -350,10 +350,15 @@ public class RadarChartScreen extends Screen {
 
             if (hovered) {
                 hoveredIndex = i;
-                // Render sleek white/category highlight marker ONLY when mouse hovers over vertex
-                context.fill(vx - 3, vy - 3, vx + 4, vy + 4, 0xFFFFFFFF);
-                context.fill(vx - 2, vy - 2, vx + 3, vy + 3, cat.getColor());
             }
+
+            int outerSize = hovered ? 4 : 3;
+            int pointColor = hovered ? 0xFFFFFFFF : cat.getColor();
+
+            // Outer Square (Subtle compact points)
+            context.fill(vx - outerSize, vy - outerSize, vx + outerSize + 1, vy + outerSize + 1, pointColor);
+            // Inner Core Square
+            context.fill(vx - 1, vy - 1, vx + 2, vy + 2, 0xFF0D1117);
         }
 
         return hoveredIndex;
