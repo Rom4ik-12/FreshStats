@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/screenshots/icon.png" width="128" height="128" alt="FreshStats Logo">
+<img src="https://raw.githubusercontent.com/Rom4ik-12/FreshStats/main/assets/screenshots/icon.png" width="128" height="128" alt="FreshStats Logo">
 
 # FreshStats
 
@@ -9,7 +9,7 @@
 
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.20.1%20--%201.21.1%2B-brightgreen.svg)](https://minecraft.net)
 [![Mod Loader](https://img.shields.io/badge/Loader-Fabric%20%7C%20NeoForge-blue.svg)](https://fabricmc.net)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/Rom4ik-12/FreshStats/main/LICENSE)
 
 ---
 
@@ -25,7 +25,7 @@
 
 Забудьте о громоздких текстовых списках ванильного меню статистики! FreshStats автоматически находит все ваши сохранения и сервера, анализирует каждый ваш шаг, нанесенный урон, установленные блоки и сделки с жителями, преобразуя их в наглядную графическую диаграмму-радар.
 
-![Radar Chart](assets/screenshots/radar_chart.png)
+![Radar Chart](https://raw.githubusercontent.com/Rom4ik-12/FreshStats/main/assets/screenshots/radar_chart.png)
 
 ### ✨ Основные возможности
 
@@ -61,7 +61,7 @@
 
 Say goodbye to tedious wall-of-text vanilla stat lists! FreshStats automatically scans all your saved singleplayer worlds and servers, compiling every step walked, damage dealt, block placed, and item traded into an intuitive visual hexagon chart.
 
-![Radar Chart](assets/screenshots/radar_chart.png)
+![Radar Chart](https://raw.githubusercontent.com/Rom4ik-12/FreshStats/main/assets/screenshots/radar_chart.png)
 
 ### ✨ Features
 
@@ -84,7 +84,7 @@ Say goodbye to tedious wall-of-text vanilla stat lists! FreshStats automatically
 1. Download the required jar from [Releases](https://github.com/Rom4ik-12/FreshStats/releases):
    - `freshstats-1.20.1-fabric.jar` (Fabric 1.20.1)
    - `freshstats-1.21.1-26.x-fabric.jar` (Fabric 1.21.1+)
-   - `freshstats-1.20.1-neoforge.jar` (NeoForge 1.20.1)
+   - `freshstats-1.20.1-neoforge.jar` (Fabric 1.20.1)
    - `freshstats-1.21.1-26.x-neoforge.jar` (NeoForge 1.21.1+)
 2. Put the `.jar` file into your `.minecraft/mods` directory.
 3. Launch Minecraft and press **O**!
@@ -108,4 +108,4 @@ Built artifacts will be generated in `build/libs/` and `builds/`.
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://raw.githubusercontent.com/Rom4ik-12/FreshStats/main/LICENSE).
