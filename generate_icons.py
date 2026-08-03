@@ -1,21 +1,18 @@
 import math
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw
 
 def create_icon_1(size=512):
-    # Option 1: Cyber Neon Hexagonal Radar Icon
+    # Option 1: Clean Cyber Neon Hexagonal Radar Icon (Dotless)
     img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     
-    # Base dark card background with rounded corners
     bg = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     bg_draw = ImageDraw.Draw(bg)
     r = 90
     
-    # Outer dark glow
     for i in range(25, 0, -1):
         alpha = int(40 * (1 - i / 25))
         bg_draw.rounded_rectangle([20 - i, 20 - i, size - 20 + i, size - 20 + i], radius=r+i, fill=(0, 180, 216, alpha))
         
-    # Main background gradient fill (Dark Navy to Slate)
     bg_draw.rounded_rectangle([30, 30, size - 30, size - 30], radius=r, fill=(13, 17, 23, 255), outline=(42, 57, 74, 255), width=6)
     img = Image.alpha_composite(img, bg)
     
@@ -23,7 +20,6 @@ def create_icon_1(size=512):
     cx, cy = size // 2, size // 2
     radius = 160
     
-    # Hexagon angles
     angles = [(2 * math.pi * i / 6.0) - (math.pi / 2.0) for i in range(6)]
     
     # Draw web rings
@@ -53,38 +49,23 @@ def create_icon_1(size=512):
         py = cy + math.sin(a) * (radius * poly_ratios[i])
         poly_pts.append((px, py))
         
-    # Semi-transparent cyan fill
     fill_layer = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     fill_draw = ImageDraw.Draw(fill_layer)
-    fill_draw.polygon(poly_pts, fill=(0, 180, 216, 80))
+    fill_draw.polygon(poly_pts, fill=(0, 180, 216, 85))
     img = Image.alpha_composite(img, fill_layer)
     
-    # Polygon Outline (Glow + Solid stroke)
+    # Polygon Outline (Clean stroke without dots)
     draw = ImageDraw.Draw(img)
     for i in range(6):
         draw.line([poly_pts[i], poly_pts[(i+1)%6]], fill=(0, 212, 255, 255), width=6)
         
-    # Vertex Dots
-    colors = [
-        (0, 180, 216, 255),   # Travel (Cyan)
-        (239, 68, 68, 255),   # Combat (Red)
-        (234, 179, 8, 255),   # Trading (Yellow)
-        (34, 197, 94, 255),   # Agriculture (Green)
-        (168, 85, 247, 255),  # Building (Purple)
-        (249, 115, 22, 255)   # Mining (Orange)
-    ]
-    for i, (px, py) in enumerate(poly_pts):
-        vr = 12
-        draw.ellipse([px - vr, py - vr, px + vr, py + vr], fill=colors[i], outline=(255, 255, 255, 255), width=3)
-        
     return img
 
 def create_icon_2(size=512):
-    # Option 2: Pixel-Art Minecraft Radar Badge
+    # Option 2: Pixel-Art Minecraft Radar Badge (Dotless)
     img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     
-    # Outer Gold/Obsidian Pixel Frame
     r = 80
     draw.rounded_rectangle([30, 30, size - 30, size - 30], radius=r, fill=(20, 24, 34, 255), outline=(245, 158, 11, 255), width=10)
     draw.rounded_rectangle([44, 44, size - 44, size - 44], radius=r-14, fill=(15, 23, 42, 255), outline=(30, 41, 59, 255), width=4)
@@ -93,7 +74,6 @@ def create_icon_2(size=512):
     radius = 150
     angles = [(2 * math.pi * i / 6.0) - (math.pi / 2.0) for i in range(6)]
     
-    # Diamond Grid Lines
     for lev in [0.3, 0.6, 0.9]:
         ring_pts = [(cx + math.cos(a) * (radius * lev), cy + math.sin(a) * (radius * lev)) for a in angles]
         for i in range(6):
@@ -102,7 +82,6 @@ def create_icon_2(size=512):
     for a in angles:
         draw.line([(cx, cy), (cx + math.cos(a) * radius, cy + math.sin(a) * radius)], fill=(51, 65, 85, 255), width=3)
         
-    # Gold & Emerald Star Polygon
     ratios = [0.85, 0.95, 0.60, 0.75, 0.90, 0.65]
     poly_pts = [(cx + math.cos(a) * (radius * ratios[i]), cy + math.sin(a) * (radius * ratios[i])) for i, a in enumerate(angles)]
     
@@ -115,13 +94,10 @@ def create_icon_2(size=512):
     for i in range(6):
         draw.line([poly_pts[i], poly_pts[(i+1)%6]], fill=(251, 191, 36, 255), width=7)
         
-    for px, py in poly_pts:
-        draw.rectangle([px-10, py-10, px+10, py+10], fill=(255, 255, 255, 255), outline=(217, 119, 6, 255), width=3)
-        
     return img
 
 def create_icon_3(size=512):
-    # Option 3: Minimalist Modern Emblem (Dark Mode Glass)
+    # Option 3: Minimalist Modern Emblem (Dotless Glass)
     img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     
@@ -132,14 +108,12 @@ def create_icon_3(size=512):
     radius = 165
     angles = [(2 * math.pi * i / 6.0) - (math.pi / 2.0) for i in range(6)]
     
-    # Inner glowing circle
     draw.ellipse([cx-radius, cy-radius, cx+radius, cy+radius], fill=None, outline=(31, 41, 55, 255), width=4)
     draw.ellipse([cx-radius*0.6, cy-radius*0.6, cx+radius*0.6, cy+radius*0.6], fill=None, outline=(31, 41, 55, 255), width=3)
     
     for a in angles:
         draw.line([(cx, cy), (cx + math.cos(a) * radius, cy + math.sin(a) * radius)], fill=(55, 65, 81, 255), width=3)
         
-    # Dual Polygons (Overall vs Current overlay look)
     r1 = [0.90, 0.70, 0.85, 0.60, 0.75, 0.80]
     r2 = [0.65, 0.95, 0.50, 0.85, 0.55, 0.90]
     
@@ -161,11 +135,6 @@ def create_icon_3(size=512):
         draw.line([p1[i], p1[(i+1)%6]], fill=(56, 189, 248, 255), width=5)
         draw.line([p2[i], p2[(i+1)%6]], fill=(192, 132, 252, 255), width=5)
         
-    for px, py in p1:
-        draw.ellipse([px-8, py-8, px+8, py+8], fill=(255, 255, 255, 255))
-    for px, py in p2:
-        draw.ellipse([px-8, py-8, px+8, py+8], fill=(232, 121, 249, 255))
-        
     return img
 
 if __name__ == "__main__":
@@ -178,7 +147,6 @@ if __name__ == "__main__":
     icon3 = create_icon_3()
     icon3.save("assets/screenshots/icon_option_3.png")
     
-    # Also save Option 1 as icon.png in resources!
     icon1_small = icon1.resize((128, 128), Image.Resampling.LANCZOS)
     icon1_small.save("src/main/resources/assets/freshstats/icon.png")
-    print("Icons generated successfully!")
+    print("Icons re-generated successfully!")
