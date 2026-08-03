@@ -28,13 +28,11 @@
 - 🎨 **Плавная анимация**: Открытие экрана сопровождается анимацией распускания диаграммы (`Cubic Ease-Out`).
 - ⌨️ **Удобные горячие клавиши**: Нажмите клавишу **O** в игре для быстрой открытии статистики.
 
-![Detail Modal](assets/screenshots/detail_modal.png)
-
 ---
 
 ### 📥 Установка
 
-1. Скачайте нужную версию из раздела [Releases](../../releases):
+1. Скачайте нужную версию из раздела [Releases](https://github.com/Rom4ik-12/FreshStats/releases):
    - `freshstats-1.20.1-fabric.jar` (для Fabric 1.20.1)
    - `freshstats-1.21.1-26.x-fabric.jar` (для Fabric 1.21.1+)
    - `freshstats-1.20.1-neoforge.jar` (для NeoForge 1.20.1)
@@ -64,13 +62,11 @@
 - 🎨 **Smooth Spring Opening Animation**: Modern cubic ease-out animation on screen open.
 - ⌨️ **Customizable Keybind**: Press **O** in-game to toggle the visual statistics GUI.
 
-![Keybinds](assets/screenshots/keybinds.png)
-
 ---
 
 ### 📥 Installation
 
-1. Download the required jar from [Releases](../../releases):
+1. Download the required jar from [Releases](https://github.com/Rom4ik-12/FreshStats/releases):
    - `freshstats-1.20.1-fabric.jar` (Fabric 1.20.1)
    - `freshstats-1.21.1-26.x-fabric.jar` (Fabric 1.21.1+)
    - `freshstats-1.20.1-neoforge.jar` (NeoForge 1.20.1)
